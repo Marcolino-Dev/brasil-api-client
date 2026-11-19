@@ -1,0 +1,45 @@
+{
+  "name": "brasil-api-client",
+  "version": "1.0.0",
+  "description": "Client library for Brasil API (brasilapi.com.br)",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "build": "tsc",
+    "dev": "ts-node src/index.ts",
+    "dev:server": "ts-node src/server.ts",
+    "start": "node dist/server.js",
+    "test": "jest",
+    "lint": "eslint src/**/*.ts"
+  },
+  "keywords": [
+    "brasilapi",
+    "brazil",
+    "api",
+    "cep",
+    "cnpj",
+    "cpf",
+    "banks",
+    "holidays"
+  ],
+  "author": "",
+  "license": "MIT",
+  "devDependencies": {
+    "@types/jest": "^29.5.14",
+    "@types/node": "^20.0.0",
+    "@typescript-eslint/eslint-plugin": "^6.0.0",
+    "@typescript-eslint/parser": "^6.0.0",
+    "eslint": "^8.0.0",
+    "jest": "^29.0.0",
+    "ts-jest": "^29.4.15",
+    "ts-node": "^10.9.0",
+    "typescript": "^5.0.0"
+  },
+  "dependencies": {
+    "@types/cors": "^2.8.19",
+    "@types/express": "^5.0.6",
+    "axios": "^1.6.0",
+    "cors": "^2.8.6",
+    "express": "^4.22.3"
+  }
+}
