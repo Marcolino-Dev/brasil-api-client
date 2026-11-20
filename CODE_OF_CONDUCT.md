@@ -34,7 +34,7 @@ Este Código de Conduta se aplica tanto nos espaços do projeto quanto nos espa�
 
 ## Aplicação
 
-Instâncias de comportamento abusivo, assediador ou inaceitável podem ser reportadas entrando em contato com a equipe do projeto em **conduct@marcolino.dev**. Todas as reclamações serão revisadas e investigadas e resultarão em uma resposta considerada necessária e apropriada às circunstâncias. A equipe do projeto é obrigada a manter a confidencialidade em relação ao reportador de um incidente. Detalhes de políticas específicas de aplicação podem ser postados separadamente.
+Instâncias de comportamento abusivo, assediador ou inaceitável podem ser reportadas entrando em contato com a equipe do projeto em **lairmarcolinodev@gmail.com**. Todas as reclamações serão revisadas e investigadas e resultarão em uma resposta considerada necessária e apropriada às circunstâncias. A equipe do projeto é obrigada a manter a confidencialidade em relação ao reportador de um incidente. Detalhes de políticas específicas de aplicação podem ser postados separadamente.
 
 Mantenedores do projeto que não seguirem ou aplicarem o Código de Conduta de boa fé podem enfrentar repercussões temporárias ou permanentes, conforme determinado por outros membros da liderança do projeto.
 

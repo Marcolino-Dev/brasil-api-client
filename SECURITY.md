@@ -11,7 +11,7 @@
 
 **Não abra issues públicas para vulnerabilidades de segurança.**
 
-Envie um email para: **security@marcolino.dev** (ou abra um [Security Advisory](https://github.com/Marcolino-Dev/brasil-api-client/security/advisories/new) privado no GitHub).
+Envie um email para: **lairmarcolinodev@gmail.com** (ou abra um [Security Advisory](https://github.com/Marcolino-Dev/brasil-api-client/security/advisories/new) privado no GitHub).
 
 Inclua:
 - Descrição da vulnerabilidade
