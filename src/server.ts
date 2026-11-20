@@ -42,18 +42,6 @@ app.get('/', (_req: Request, res: Response) => {
       },
       ddd: 'GET /api/ddd/:ddd',
       holidays: 'GET /api/holidays/:year',
-      fipe: {
-        brands: 'GET /api/fipe/brands/:type (carros|motos|caminhoes)',
-        models: 'GET /api/fipe/models/:type/:brandCode',
-        years: 'GET /api/fipe/years/:type/:brandCode/:modelCode',
-        price: 'GET /api/fipe/price/:fipeCode',
-      },
-      ibge: {
-        states: 'GET /api/ibge/states',
-        cities: 'GET /api/ibge/cities/:uf',
-      },
-      isbn: 'GET /api/isbn/:isbn',
-      ncm: 'GET /api/ncm/:ncm',
       cpf: 'GET /api/cpf/:cpf',
       status: 'GET /api/status',
     },
@@ -156,93 +144,6 @@ app.get('/api/holidays/:year', async (req: Request, res: Response, next: NextFun
 });
 
 // ============================================
-// FIPE Routes
-// ============================================
-app.get('/api/fipe/brands/:type', async (req: Request, res: Response, next: NextFunction) => {
-  try {
-    const type = getParam(req, 'type') as 'carros' | 'motos' | 'caminhoes';
-    const result = await client.getFipeBrands(type);
-    res.json(result);
-  } catch (error) {
-    next(error);
-  }
-});
-
-app.get('/api/fipe/models/:type/:brandCode', async (req: Request, res: Response, next: NextFunction) => {
-  try {
-    const type = getParam(req, 'type') as 'carros' | 'motos' | 'caminhoes';
-    const result = await client.getFipeModels(type, getParam(req, 'brandCode'));
-    res.json(result);
-  } catch (error) {
-    next(error);
-  }
-});
-
-app.get('/api/fipe/years/:type/:brandCode/:modelCode', async (req: Request, res: Response, next: NextFunction) => {
-  try {
-    const type = getParam(req, 'type') as 'carros' | 'motos' | 'caminhoes';
-    const result = await client.getFipeYears(type, getParam(req, 'brandCode'), getParam(req, 'modelCode'));
-    res.json(result);
-  } catch (error) {
-    next(error);
-  }
-});
-
-app.get('/api/fipe/price/:fipeCode', async (req: Request, res: Response, next: NextFunction) => {
-  try {
-    const result = await client.getFipePrice(getParam(req, 'fipeCode'));
-    res.json(result);
-  } catch (error) {
-    next(error);
-  }
-});
-
-// ============================================
-// IBGE Routes
-// ============================================
-app.get('/api/ibge/states', async (_req: Request, res: Response, next: NextFunction) => {
-  try {
-    const result = await client.getIbgeStates();
-    res.json(result);
-  } catch (error) {
-    next(error);
-  }
-});
-
-app.get('/api/ibge/cities/:uf', async (req: Request, res: Response, next: NextFunction) => {
-  try {
-    const result = await client.getIbgeCitiesByState(getParam(req, 'uf'));
-    res.json(result);
-  } catch (error) {
-    next(error);
-  }
-});
-
-// ============================================
-// ISBN Routes
-// ============================================
-app.get('/api/isbn/:isbn', async (req: Request, res: Response, next: NextFunction) => {
-  try {
-    const result = await client.getIsbn(getParam(req, 'isbn'));
-    res.json(result);
-  } catch (error) {
-    next(error);
-  }
-});
-
-// ============================================
-// NCM Routes
-// ============================================
-app.get('/api/ncm/:ncm', async (req: Request, res: Response, next: NextFunction) => {
-  try {
-    const result = await client.getNcm(getParam(req, 'ncm'));
-    res.json(result);
-  } catch (error) {
-    next(error);
-  }
-});
-
-// ============================================
 // CPF Routes
 // ============================================
 app.get('/api/cpf/:cpf', async (req: Request, res: Response, next: NextFunction) => {
@@ -311,14 +212,6 @@ Endpoints disponíveis:
   GET /api/banks/:code
   GET /api/ddd/:ddd
   GET /api/holidays/:year
-  GET /api/fipe/brands/:type
-  GET /api/fipe/models/:type/:brandCode
-  GET /api/fipe/years/:type/:brandCode/:modelCode
-  GET /api/fipe/price/:fipeCode
-  GET /api/ibge/states
-  GET /api/ibge/cities/:uf
-  GET /api/isbn/:isbn
-  GET /api/ncm/:ncm
   GET /api/cpf/:cpf
   GET /api/status
   `);

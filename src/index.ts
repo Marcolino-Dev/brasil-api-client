@@ -73,76 +73,6 @@ export interface HolidayData {
   level: string;
 }
 
-export interface FipeBrandData {
-  nome: string;
-  valor: string;
-}
-
-export interface FipeModelData {
-  modelo: string;
-  valor: string;
-}
-
-export interface FipeYearData {
-  nome: string;
-  valor: string;
-}
-
-export interface FipePriceData {
-  codigoFipe: string;
-  marca: string;
-  modelo: string;
-  anoModelo: number;
-  combustivel: string;
-  codigoCombustivel: number;
-  mesReferencia: string;
-  valor: string;
-  siglaCombustivel: string;
-  dataConsulta: string;
-}
-
-export interface IbgeCityData {
-  codigo_ibge: string;
-  nome: string;
-}
-
-export interface IbgeStateData {
-  id: number;
-  sigla: string;
-  nome: string;
-  regiao: {
-    id: number;
-    sigla: string;
-    nome: string;
-  };
-}
-
-export interface IsbnData {
-  isbn: string;
-  titulo: string;
-  autores: string[];
-  editora: string;
-  numeroPaginas: number;
-  anoPublicacao: number;
-  idioma: string;
-  peso: number;
-  dimensoes: {
-    altura: number;
-    largura: number;
-    profundidade: number;
-  };
-}
-
-export interface NcmData {
-  codigo: string;
-  descricao: string;
-  data_inicio: string;
-  data_fim: string;
-  tipo_ato: string;
-  numero_ato: string;
-  ano_ato: string;
-}
-
 export interface CpfData {
   isValid: boolean;
 }
@@ -304,97 +234,6 @@ export class BrasilApiClient {
   }
 
   // ============================================
-  // FIPE Endpoints (corrected paths)
-  // ============================================
-
-  /**
-   * Lista marcas de veículos
-   * @param vehicleType 'carros' | 'motos' | 'caminhoes'
-   */
-  async getFipeBrands(vehicleType: 'carros' | 'motos' | 'caminhoes' = 'carros'): Promise<FipeBrandData[]> {
-    const response = await this.client.get<FipeBrandData[]>(`/fipe/marcas/v1/${vehicleType}`);
-    return response.data;
-  }
-
-  /**
-   * Lista modelos por marca
-   */
-  async getFipeModels(vehicleType: 'carros' | 'motos' | 'caminhoes', brandCode: string): Promise<FipeModelData[]> {
-    const response = await this.client.get<FipeModelData[]>(`/fipe/veiculos/v1/${vehicleType}/${brandCode}`);
-    return response.data;
-  }
-
-  /**
-   * Lista anos por modelo
-   */
-  async getFipeYears(vehicleType: 'carros' | 'motos' | 'caminhoes', brandCode: string, modelCode: string): Promise<FipeYearData[]> {
-    const response = await this.client.get<FipeYearData[]>(`/fipe/anos/v1/${vehicleType}/${brandCode}/${modelCode}`);
-    return response.data;
-  }
-
-  /**
-   * Busca valor FIPE
-   */
-  async getFipePrice(fipeCode: string): Promise<FipePriceData> {
-    const response = await this.client.get<FipePriceData>(`/fipe/preco/v1/${fipeCode}`);
-    return response.data;
-  }
-
-  // ============================================
-  // IBGE Endpoints
-  // ============================================
-
-  /**
-   * Lista todos os estados
-   */
-  async getIbgeStates(): Promise<IbgeStateData[]> {
-    const response = await this.client.get<IbgeStateData[]>('/ibge/uf/v1');
-    return response.data;
-  }
-
-  /**
-   * Lista cidades por estado
-   */
-  async getIbgeCitiesByState(stateCode: string): Promise<IbgeCityData[]> {
-    const response = await this.client.get<IbgeCityData[]>(`/ibge/municipios/v1/${stateCode.toUpperCase()}`);
-    return response.data;
-  }
-
-  /**
-   * Busca cidade por código IBGE
-   */
-  async getIbgeCityByCode(cityCode: number): Promise<IbgeCityData> {
-    const response = await this.client.get<IbgeCityData>(`/ibge/municipios/v1/${cityCode}`);
-    return response.data;
-  }
-
-  // ============================================
-  // ISBN Endpoints
-  // ============================================
-
-  /**
-   * Busca livro por ISBN
-   */
-  async getIsbn(isbn: string): Promise<IsbnData> {
-    const cleanIsbn = isbn.replace(/\D/g, '');
-    const response = await this.client.get<IsbnData>(`/isbn/v1/${cleanIsbn}`);
-    return response.data;
-  }
-
-  // ============================================
-  // NCM Endpoints
-  // ============================================
-
-  /**
-   * Busca NCM
-   */
-  async getNcm(ncm: string): Promise<NcmData> {
-    const cleanNcm = ncm.replace(/\D/g, '');
-    const response = await this.client.get<NcmData>(`/ncm/v1/${cleanNcm}`);
-    return response.data;
-  }
-
-  // ============================================
   // CPF Endpoints
   // ============================================
 
@@ -460,27 +299,6 @@ export const ddd = {
 
 export const holidays = {
   byYear: (year: number) => getDefaultClient().getHolidays(year),
-};
-
-export const fipe = {
-  brands: (type?: 'carros' | 'motos' | 'caminhoes') => getDefaultClient().getFipeBrands(type),
-  models: (type: 'carros' | 'motos' | 'caminhoes', brandCode: string) => getDefaultClient().getFipeModels(type, brandCode),
-  years: (type: 'carros' | 'motos' | 'caminhoes', brandCode: string, modelCode: string) => getDefaultClient().getFipeYears(type, brandCode, modelCode),
-  price: (fipeCode: string) => getDefaultClient().getFipePrice(fipeCode),
-};
-
-export const ibge = {
-  states: () => getDefaultClient().getIbgeStates(),
-  citiesByState: (stateCode: string) => getDefaultClient().getIbgeCitiesByState(stateCode),
-  cityByCode: (cityCode: number) => getDefaultClient().getIbgeCityByCode(cityCode),
-};
-
-export const isbn = {
-  get: (isbn: string) => getDefaultClient().getIsbn(isbn),
-};
-
-export const ncm = {
-  get: (ncm: string) => getDefaultClient().getNcm(ncm),
 };
 
 export const cpf = {

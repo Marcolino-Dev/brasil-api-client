@@ -68,43 +68,6 @@ describe('BrasilApiClient', () => {
     }, 15000);
   });
 
-  describe('FIPE', () => {
-    it('should list car brands', async () => {
-      const result = await client.getFipeBrands('carros');
-      expect(Array.isArray(result)).toBe(true);
-      expect(result.length).toBeGreaterThan(0);
-    }, 15000);
-  });
-
-  describe('IBGE', () => {
-    it('should list states', async () => {
-      const result = await client.getIbgeStates();
-      expect(Array.isArray(result)).toBe(true);
-      expect(result.length).toBe(27); // 26 states + DF
-    }, 15000);
-
-    it('should list cities by state', async () => {
-      const result = await client.getIbgeCitiesByState('SP');
-      expect(Array.isArray(result)).toBe(true);
-      expect(result.length).toBeGreaterThan(0);
-    }, 15000);
-  });
-
-  describe('ISBN', () => {
-    it('should handle invalid ISBN gracefully', async () => {
-      await expect(client.getIsbn('0000000000')).rejects.toThrow(BrasilApiClientError);
-    }, 15000);
-  });
-
-  describe('NCM', () => {
-    it('should fetch NCM', async () => {
-      const result = await client.getNcm('84713012');
-      expect(result).toBeDefined();
-      expect(result.codigo).toBeDefined();
-      expect(result.descricao).toBeDefined();
-    }, 15000);
-  });
-
   describe('CPF', () => {
     it('should validate CPF', async () => {
       const result = await client.validateCpf('12345678900');

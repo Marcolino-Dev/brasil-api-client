@@ -11,8 +11,8 @@ Cliente TypeScript/JavaScript para a [Brasil API](https://brasilapi.com.br/) —
 ## ✨ Features
 
 - **TypeScript nativo** — Tipos completos para todos os endpoints
-- **11 endpoints cobertos** — CEP, CNPJ, Bancos, DDD, Feriados, FIPE, IBGE, ISBN, NCM, CPF, Status
-- **CLI incluída** — 17 comandos prontos para uso
+- **7 endpoints cobertos** — CEP, CNPJ, Bancos, DDD, Feriados, CPF, Status
+- **CLI incluída** — 12 comandos prontos para uso
 - **Servidor local** — Proxy Express para desenvolvimento
 - **Web UI** — Interface responsiva com tema dark/light
 - **Testes de integração** — Contra a API real
@@ -50,15 +50,6 @@ npx ts-node src/cli.ts ddd 11
 # Feriados 2024
 npx ts-node src/cli.ts holidays 2024
 
-# FIPE - Marcas de carros
-npx ts-node src/cli.ts fipe-brands carros
-
-# IBGE - Estados
-npx ts-node src/cli.ts ibge-states
-
-# NCM
-npx ts-node src/cli.ts ncm 84713012
-
 # Validar CPF
 npx ts-node src/cli.ts cpf 11144477735
 
@@ -79,9 +70,6 @@ import {
   banks,
   ddd,
   holidays,
-  fipe,
-  ibge,
-  ncm,
   cpf,
   status
 } from './dist';
@@ -98,10 +86,6 @@ const cnpjData = await cnpj.get('11222333000181');
 const banksList = await banks.list();
 const dddData = await ddd.get('11');
 const holidaysList = await holidays.byYear(2024);
-const fipeBrands = await fipe.brands('carros');
-const states = await ibge.states();
-const cities = await ibge.citiesByState('SP');
-const ncmData = await ncm.get('84713012');
 const cpfResult = await cpf.validate('11144477735');
 const apiStatus = await status.get();
 
@@ -121,14 +105,6 @@ const customCep = await client.getCepV2('01310100');
 | | Por código | `banks.byCode(code)` | Busca por código COMPE |
 | **DDD** | Consulta | `ddd.get(ddd)` | Cidades por DDD |
 | **Feriados** | Por ano | `holidays.byYear(year)` | Nacionais |
-| **FIPE** | Marcas | `fipe.brands(type)` | carros/motos/caminhoes |
-| | Modelos | `fipe.models(type, brandCode)` | Por marca |
-| | Anos | `fipe.years(type, brandCode, modelCode)` | Por modelo |
-| | Preço | `fipe.price(fipeCode)` | Valor atual |
-| **IBGE** | Estados | `ibge.states()` | 27 UFs |
-| | Cidades | `ibge.citiesByState(uf)` | Por estado |
-| **ISBN** | Busca | `isbn.get(isbn)` | Dados do livro |
-| **NCM** | Busca | `ncm.get(ncm)` | Nomenclatura Mercosul |
 | **CPF** | Validação | `cpf.validate(cpf)` | Algorítmica |
 | **Status** | Health | `status.get()` | Status da API |
 
@@ -155,14 +131,6 @@ Endpoints disponíveis em `http://localhost:3000`:
 | `GET /api/banks/:code` | Banco por código |
 | `GET /api/ddd/:ddd` | DDD |
 | `GET /api/holidays/:year` | Feriados |
-| `GET /api/fipe/brands/:type` | Marcas FIPE |
-| `GET /api/fipe/models/:type/:brandCode` | Modelos |
-| `GET /api/fipe/years/:type/:brandCode/:modelCode` | Anos |
-| `GET /api/fipe/price/:fipeCode` | Preço |
-| `GET /api/ibge/states` | Estados |
-| `GET /api/ibge/cities/:uf` | Cidades |
-| `GET /api/isbn/:isbn` | ISBN |
-| `GET /api/ncm/:ncm` | NCM |
 | `GET /api/cpf/:cpf` | Validação CPF |
 | `GET /api/status` | Status API |
 
@@ -224,7 +192,7 @@ brasil-api-client/
 │   └── dependabot.yml
 ├── src/
 │   ├── index.ts            # Cliente principal + types
-│   ├── cli.ts              # CLI (17 comandos)
+│   ├── cli.ts              # CLI (12 comandos)
 │   ├── server.ts           # Express proxy server
 │   ├── examples.ts         # Exemplos de uso
 │   └── client.test.ts      # Testes de integração
@@ -249,14 +217,14 @@ brasil-api-client/
 
 ## 🧪 Testes
 
-- **16 testes de integração** contra a Brasil API real
+- **10 testes de integração** contra a Brasil API real
 - Timeout: 15s por teste
 - Cobertura: `npm run test:coverage`
 
 ```bash
 npm test
 # PASS  src/client.test.ts
-#  16 passed, 16 total
+#  10 passed, 10 total
 ```
 
 ## 🤝 Contribuindo

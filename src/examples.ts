@@ -6,10 +6,6 @@ import {
   banks,
   ddd,
   holidays,
-  fipe,
-  ibge,
-  isbn,
-  ncm,
   cpf,
   status,
   BrasilApiClientError
@@ -71,48 +67,12 @@ async function main() {
       console.log(`  ${h.date} - ${h.name} (${h.type})`);
     });
 
-    // 6. FIPE - Vehicle Prices
-    console.log('\n--- FIPE Car Brands ---');
-    const fipeBrands = await fipe.brands('carros');
-    console.log(`Total brands: ${fipeBrands.length}`);
-    console.log('First 5:', fipeBrands.slice(0, 5).map(b => `${b.valor} - ${b.nome}`).join(', '));
-
-    // 7. IBGE - States
-    console.log('\n--- IBGE States ---');
-    const states = await ibge.states();
-    console.log(`Total states: ${states.length}`);
-    states.slice(0, 5).forEach(s => {
-      console.log(`  ${s.sigla} - ${s.nome} (${s.regiao.nome})`);
-    });
-
-    // 8. ISBN Lookup
-    console.log('\n--- ISBN Lookup ---');
-    try {
-      const isbnResult = await isbn.get('9788575227566'); // Example ISBN
-      console.log('Title:', isbnResult.titulo);
-      console.log('Authors:', isbnResult.autores.join(', '));
-      console.log('Publisher:', isbnResult.editora);
-    } catch (e) {
-      console.log('ISBN not found or invalid');
-    }
-
-    // 9. NCM Lookup
-    console.log('\n--- NCM Lookup ---');
-    try {
-      const ncmResult = await ncm.get('84713012');
-      console.log('Code:', ncmResult.codigo);
-      console.log('Description:', ncmResult.descricao);
-      console.log('Start Date:', ncmResult.data_inicio);
-    } catch (e) {
-      console.log('NCM not found');
-    }
-
-    // 10. CPF Validation
+    // 6. CPF Validation
     console.log('\n--- CPF Validation ---');
     const cpfResult = await cpf.validate('123.456.789-00');
     console.log('Valid:', cpfResult.isValid ? '✅ Yes' : '❌ No');
 
-    // 11. Status Check
+    // 7. Status Check
     console.log('\n--- API Status ---');
     const apiStatus = await status.get();
     console.log('Status:', apiStatus.status);
