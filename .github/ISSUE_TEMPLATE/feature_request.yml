@@ -1,0 +1,53 @@
+name: Feature Request
+description: Suggest a new feature or enhancement
+title: "[Feature]: "
+labels: ["enhancement"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Obrigado por sugerir uma melhoria! Descreva sua ideia abaixo.
+
+  - type: textarea
+    id: problem
+    attributes:
+      label: Qual problema isso resolve?
+      description: Descreva o problema ou necessidade que motivou esta sugestão
+      placeholder: Ex: Atualmente não há suporte para buscar CEPs por cidade/estado
+    validations:
+      required: true
+
+  - type: textarea
+    id: solution
+    attributes:
+      label: Solução proposta
+      description: Como você imagina que isso funcionaria?
+      placeholder: |
+        Adicionar endpoint `cep.byCityState(city, state)` que retorna lista de CEPs
+        CLI: `cep-by-city "São Paulo" "SP"`
+    validations:
+      required: true
+
+  - type: textarea
+    id: alternatives
+    attributes:
+      label: Alternativas consideradas
+      description: Outras abordagens que você considerou
+      placeholder: Poderia usar a API do IBGE diretamente, mas seria mais complexo
+
+  - type: dropdown
+    id: priority
+    attributes:
+      label: Prioridade
+      options:
+        - Baixa (nice to have)
+        - Média (melhoria útil)
+        - Alta (bloqueia uso importante)
+        - Crítica (bug de segurança/dados)
+
+  - type: textarea
+    id: additional
+    attributes:
+      label: Contexto adicional
+      description: Mockups, links para APIs relacionadas, exemplos de uso, etc.
+      placeholder: Qualquer informação extra

@@ -1,0 +1,89 @@
+name: Bug Report
+description: Report a bug or unexpected behavior
+title: "[Bug]: "
+labels: ["bug"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Obrigado por reportar um bug! Por favor, preencha os campos abaixo para nos ajudar a entender e reproduzir o problema.
+
+  - type: textarea
+    id: description
+    attributes:
+      label: Descrição do bug
+      description: Descreva claramente o que está acontecendo
+      placeholder: Ex: Ao buscar CEP 01310100, a API retorna erro 500
+    validations:
+      required: true
+
+  - type: textarea
+    id: reproduction
+    attributes:
+      label: Passos para reproduzir
+      description: Passos detalhados para reproduzir o bug
+      placeholder: |
+        1. Execute `npx ts-node src/cli.ts cep 01310100`
+        2. Observe o erro
+        3. ...
+    validations:
+      required: true
+
+  - type: textarea
+    id: expected
+    attributes:
+      label: Comportamento esperado
+      description: O que deveria acontecer
+      placeholder: Deveria retornar os dados do CEP com geolocalização
+    validations:
+      required: true
+
+  - type: textarea
+    id: actual
+    attributes:
+      label: Comportamento atual
+      description: O que está acontecendo de fato
+      placeholder: Retorna erro 500 com mensagem "Internal Server Error"
+    validations:
+      required: true
+
+  - type: dropdown
+    id: component
+    attributes:
+      label: Componente afetado
+      options:
+        - CLI (src/cli.ts)
+        - Client Library (src/index.ts)
+        - Server (src/server.ts)
+        - Web UI (public/)
+        - Tests
+        - Documentation
+        - Build/Config
+        - Outro
+    validations:
+      required: true
+
+  - type: input
+    id: version
+    attributes:
+      label: Versão do projeto
+      description: Versão do package.json ou commit hash
+      placeholder: Ex: 1.0.0 ou commit abc123
+
+  - type: textarea
+    id: environment
+    attributes:
+      label: Ambiente
+      description: Informações do ambiente onde o bug ocorre
+      placeholder: |
+        - OS: Windows 11 / Ubuntu 22.04 / macOS 14
+        - Node.js: v20.x.x
+        - npm: 10.x.x
+        - Navegador (se UI): Chrome 120 / Firefox 121
+
+  - type: textarea
+    id: additional
+    attributes:
+      label: Informações adicionais
+      description: Logs, screenshots, configurações relevantes, etc.
+      placeholder: Qualquer outra informação que possa ajudar

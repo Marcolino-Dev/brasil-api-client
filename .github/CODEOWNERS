@@ -1,0 +1,17 @@
+# Code Owners
+# Estas pessoas/equipes serão automaticamente solicitadas para review
+
+* @Marcolino-Dev
+
+# Arquivos de configuração crítica
+/package.json @Marcolino-Dev
+/tsconfig.json @Marcolino-Dev
+/jest.config.js @Marcolino-Dev
+/.github/ @Marcolino-Dev
+
+# Código fonte principal
+/src/index.ts @Marcolino-Dev
+/src/server.ts @Marcolino-Dev
+
+# CI/CD
+/.github/workflows/ @Marcolino-Dev
