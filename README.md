@@ -2,7 +2,6 @@
 
 [![CI](https://github.com/Marcolino-Dev/brasil-api-client/workflows/CI/badge.svg)](https://github.com/Marcolino-Dev/brasil-api-client/actions/workflows/ci.yml)
 [![Release](https://github.com/Marcolino-Dev/brasil-api-client/workflows/Release/badge.svg)](https://github.com/Marcolino-Dev/brasil-api-client/actions/workflows/release.yml)
-[![npm version](https://img.shields.io/npm/v/brasil-api-client.svg)](https://www.npmjs.com/package/brasil-api-client)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![TypeScript](https://img.shields.io/badge/TypeScript-5.x-blue.svg)](https://www.typescriptlang.org/)
 [![Node.js](https://img.shields.io/badge/Node.js-%3E%3D18-green.svg)](https://nodejs.org/)
@@ -12,7 +11,7 @@ Cliente TypeScript/JavaScript para a [Brasil API](https://brasilapi.com.br/) —
 ## ✨ Features
 
 - **TypeScript nativo** — Tipos completos para todos os endpoints
-- **12 endpoints cobertos** — CEP, CNPJ, Bancos, DDD, Feriados, FIPE, IBGE, ISBN, NCM, CPF, Status
+- **11 endpoints cobertos** — CEP, CNPJ, Bancos, DDD, Feriados, FIPE, IBGE, ISBN, NCM, CPF, Status
 - **CLI incluída** — 17 comandos prontos para uso
 - **Servidor local** — Proxy Express para desenvolvimento
 - **Web UI** — Interface responsiva com tema dark/light
@@ -22,11 +21,12 @@ Cliente TypeScript/JavaScript para a [Brasil API](https://brasilapi.com.br/) —
 ## 📦 Instalação
 
 ```bash
-npm install brasil-api-client
-# ou
-yarn add brasil-api-client
-# ou
-pnpm add brasil-api-client
+# Clone o repositório
+git clone https://github.com/Marcolino-Dev/brasil-api-client.git
+cd brasil-api-client
+
+# Instale dependências
+npm install
 ```
 
 ## 🚀 Uso Rápido (CLI)
@@ -81,11 +81,10 @@ import {
   holidays,
   fipe,
   ibge,
-  isbn,
   ncm,
   cpf,
   status
-} from 'brasil-api-client';
+} from './dist';
 
 // Cliente customizado com timeout maior
 const client = createBrasilApiClient({
@@ -102,7 +101,6 @@ const holidaysList = await holidays.byYear(2024);
 const fipeBrands = await fipe.brands('carros');
 const states = await ibge.states();
 const cities = await ibge.citiesByState('SP');
-const isbnData = await isbn.get('9788575227566');
 const ncmData = await ncm.get('84713012');
 const cpfResult = await cpf.validate('11144477735');
 const apiStatus = await status.get();
